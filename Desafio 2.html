@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="botao">Gerar quadrado vermelho</button>
+    <div id="quadrado"></div>
+    <ul></ul>
+
+    <input type="texto" name="textonome" id="inputNome">
+    <button onClick="adicionar()">Adicionar nome</button>
+
+    <script>
+        console.log("Exercicio 1");
+        /* Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado
+vermelho com 100px de altura e largura. Sempre que o botão for clicado um novo quadrado deve
+aparecer na tela. */
+
+        var botaoElemento = document.getElementById('botao');
+        var quadradoElemento = document.getElementById('quadrado');
+
+        botaoElemento.onclick = function () {
+            var fazerquadrado = document.createElement('div');
+            fazerquadrado.style.width = '100px';
+            fazerquadrado.style.height = '100px';
+            fazerquadrado.style.backgroundColor = '#f00';
+
+            quadradoElemento.appendChild(fazerquadrado);
+
+            console.log("Exercicio 2");
+            /*  Utilizando o resultado do primeiro desafio, toda vez que o usuário passar o mouse por cima de
+             algum quadrado troque sua cor para uma cor aleatória gerada pela função abaixo:
+                 function getRandomColor() {
+                     var letters = "0123456789ABCDEF";
+                     var color = "#";
+                     for (var i = 0; i < 6; i++) {
+                         color += letters[Math.floor(Math.random() * 16)];
+                     }
+                     return color;
+                 }
+             var newColor = getRandomColor(); // #E943F0 */
+
+            function getRandomColor() {
+                var letra = "0123456789ABCDEF";
+                var cor = "#";
+                for (var i = 0; i < 6; i++) {
+                    cor += letra[Math.floor(Math.random() * 16)];
+                }
+                return cor;
+            }
+            var novaCor = getRandomColor(); // #E943F0
+
+            fazerquadrado.onmouseover = function () {
+                fazerquadrado.style.backgroundColor = getRandomColor();
+            }
+
+            quadradoElemento.appendChild(fazerquadrado);
+        };
+
+        console.log("Exercicio 3");
+        /*  A partir do seguinte vetor:
+             var nomes = ["Diego", "Gabriel", "Lucas"];
+         Preencha uma lista( < ul > ) no HTML com os itens da seguinte forma: ●Diego● Gabriel● Lucas */
+
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+        var listaElemento = document.querySelector('ul');
+
+        for (x of nomes) {
+            var liElemento = document.createElement('li');
+            var textoElemento = document.createTextNode(x);
+
+            liElemento.appendChild(textoElemento);
+            listaElemento.appendChild(liElemento);
+        }
+
+        console.log("Exercicio 4");
+        /* Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:
+            <
+            input type = "text"
+        name = "nome" >
+            <
+            button onClick = "adicionar()" > Adicionar < /button>
+        Ao clicar no botão, a função adicionar
+        () deve ser disparada adicionando um novo item a lista denomes baseado no nome preenchido no input e renderizando o novo item em tela juntos aos
+        demais itens anteriores.Além disso, o conteúdo do input deve ser apagado após o clique */
+
+        var inserirNome = document.querySelector('input');
+
+        function addItem(texto) {
+            var liElemento = document.createElement('li');
+            var textoElemento = document.createTextNode(texto);
+
+            liElemento.appendChild(textoElemento);
+            listaElemento.appendChild(liElemento);
+        }
+
+        function adicionar() {
+            addItem(inserirNome.value);
+            inserirNome.value = "";
+            document.getElementById('inputNome').focus();
+        }
+    </script>
+</body>
+
+</html>
